@@ -6,25 +6,12 @@ description: Enable the Bitbucket integration to have pull request status, comme
 
 The Bitbucket integration incorporates Codacy on your existing Git provider workflows by reporting issues and the analysis status directly on your pull requests.
 
-When the integration is enabled, you can also create pull request comments and Jira issues directly from Codacy when [browsing the existing issues](../../repositories/issues.md) on the repository:
-
-![Bitbucket integration for issues](images/bitbucket-integration-issues.png)
-
-## Enabling the Bitbucket integration {: id="enabling"}
-
-To enable the Bitbucket integration, open your repository **Settings**, tab **Integrations**. When you add a new repository, Codacy enables the integration using the [default settings for your organization](../../organizations/configuring-default-git-provider-integration-settings.md).
+When you add a new repository, Codacy sets the Bitbucket integration using the [default settings for your organization](../../organizations/integrations/default-git-provider-integration-settings.md). You can then [customize the settings](#configuring) for the repository.
 
 ![Bitbucket integration](images/bitbucket-integration.png)
 
-If you remove the integration, you can enable it again as follows:
-
-1.  Click the button **Add integration** and select **Bitbucket** on the list.
-1.  Click the button **Enable** and follow the instructions.
-
-    !!! important
-        The user that enables the integration [must have administrator access to the repository](../../organizations/roles-and-permissions-for-organizations.md#permissions-for-bitbucket). Codacy uses this Bitbucket user to create comments on pull requests.
-
-    {% include-markdown "../../assets/includes/service-account-integration.md" %}
+!!! important
+    Codacy uses the Bitbucket user who added the repository to create comments on pull requests. If that user loses access to the repository, a repository admin must [refresh the Bitbucket integration](#refreshing).
 
 ## Configuring the Bitbucket integration {: id="configuring"}
 
@@ -38,7 +25,7 @@ Depending on the options that you enable, Codacy will automatically update pull 
     end="<!--default-settings-apply-all-end-->"
 %}
 
-### Pull Request Status
+### Status checks {: id="pull-request-status"}
 
 Adds a report to your pull requests showing whether your pull requests and coverage are up to standards or not as configured on the [quality gate rules](../../repositories-configure/adjusting-quality-gates.md) for your repository. You can then optionally [block merging pull requests that aren't up to standards](../../getting-started/integrating-codacy-with-your-git-workflow.md#blocking-pull-requests).
 
@@ -46,27 +33,73 @@ Adds a report to your pull requests showing whether your pull requests and cover
 
 ![Pull request status on Bitbucket](images/bitbucket-integration-pr-status.png)
 
-### Pull Request Comment
+### Issue annotations {: id="pull-request-comment"}
 
-Adds comments on the lines of the pull request where Codacy finds new issues. Click on the links to open Codacy and see more details about the issues and how to fix them.
+Adds comments on the lines of the pull request where Codacy finds new issues. Click on the links to open Codacy and see more details about the issues and how to fix them. To enable this option, you must enable **Status checks** first.
 
 ![Pull request comment on Bitbucket](images/bitbucket-integration-pr-comment.png)
 
-### AI-Enhanced Comments
+### Issue summaries {: id="pull-request-summary"}
 
-{% include-markdown "../../assets/includes/preview.md" %}
+!!! note "This feature isn't available for Bitbucket Server"
+
+Shows an overall view of the changes in the pull request, including new issues and metrics such as complexity and duplication. To enable this option, you must enable **Status checks** first.
+
+![Pull request summary on Bitbucket](images/bitbucket-integration-pr-summary.png)
+
+### AI-Enhanced Comments
 
 Adds AI-enhanced comments with insights to help you fix identified issues.
 
 {% include-markdown "../../assets/includes/ai-info.md" %}
 
-### Pull Request Summary
+![AI-enhanced comment on GitLab](images/bitbucket-integration-ai-comment.png)
 
-!!! note "This feature isn't available for Bitbucket Server"
+## Refreshing the Bitbucket integration {: id="refreshing"}
 
-Shows an overall view of the changes in the pull request, including new issues and metrics such as complexity and duplication.
+If the user who added the repository to Codacy loses access to the repository, which may happen when the user leaves the team or the organization, Codacy won't be able to create comments on pull requests.
 
-![Pull request summary on Bitbucket](images/bitbucket-integration-pr-summary.png)
+In this situation, another user with [administrator access to the repository](../../organizations/roles-and-permissions-for-organizations.md#permissions-for-bitbucket) needs to refresh the Bitbucket integration:
+
+{% include-markdown "../../assets/includes/service-account-integration.md" %}
+
+1.  Open the repository **Settings**, tab **Integrations**.
+
+1.  On the Bitbucket integration area, click the link **Refresh connection**.
+
+    ![Refresh Bitbucket integration](images/bitbucket-integration-refresh.png)
+
+After refreshing the integration, Codacy will use the logged in Bitbucket user to create comments on new pull requests.
+
+## Generating automatic pull request summaries
+
+!!! info "This is a preview feature"
+    This is an upcoming Codacy feature. If you're interested, contact <a href="mailto:support@codacy.com">support@codacy.com</a> for early access.
+
+Codacy can provide a clear, high-level summary of the code changes introduced by a pull request, based on the committed code.
+Codacy generates an overview of the changes in the pull request so that any reviewer can understand its intent and impact.
+
+![Automatic Summary on Bitbucket](images/bitbucket-integration-automatic-summary.png)
+
+!!! note
+    -   This feature uses only AWS services within Codacy's existing infrastructure. No information is shared with any other third party or used to train AI models.
+    -   Summaries are generated using the pull request title, branch name, commit messages, and changes diff.
+
+To enable this feature, add the following to the [Codacy configuration file](../codacy-configuration-file.md) `.codacy.yaml` in the root of your repository:
+
+```yaml
+---
+reviews:
+  high_level_summary: true
+```
+
+You can also enable this feature across your organization by creating the above file in the root of a repository named `.codacy`. This file will be used as the default configuration for all repositories in the organization and overridden by repository-specific configuration files.
+
+Once enabled, summaries will be created when pull requests are opened and updated at each commit to reflect any changes to the pull request.
+
+Pull requests opened by bots, such as Dependabot, are ignored.
+
+If you see duplicated comments posted by Codacy on the same pull request, please ensure that your repository only has one configured webhook for Codacy.
 
 ## See also
 

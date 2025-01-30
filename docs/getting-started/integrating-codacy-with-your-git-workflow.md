@@ -14,7 +14,7 @@ In particular, you can configure quality gates to block merging pull requests th
 To integrate Codacy with your Git workflow, follow these steps:
 
 1.  [Configuring the quality gate rules](#configuring-gate)
-1.  [Activating the Git provider integration](#git-provider-integration)
+1.  [Configuring the Git provider integration](#git-provider-integration)
 1.  [Blocking merging pull requests](#blocking-pull-requests) (optional)
 
 ## 1. Configuring the quality gate rules {: id="configuring-gate"}
@@ -35,24 +35,21 @@ To integrate Codacy with your Git workflow, follow these steps:
 
 ![Adjusting the quality gates](../repositories-configure/images/quality-settings-gates.png)
 
-## 2. Activating the Git provider integration {: id="git-provider-integration"}
+## 2. Configuring the Git provider integration {: id="git-provider-integration"}
 
-Follow the instructions for [GitHub](../repositories-configure/integrations/github-integration.md#enabling), [GitLab](../repositories-configure/integrations/gitlab-integration.md#enabling), or [Bitbucket](../repositories-configure/integrations/bitbucket-integration.md#enabling) depending on your Git provider, and make sure that you:
+Make sure you enable the option **Status checks** ([GitHub](../repositories-configure/integrations/github-integration.md#status-checks)) or **Pull request status** ([GitLab](../repositories-configure/integrations/gitlab-integration.md#pull-request-status) and [Bitbucket](../repositories-configure/integrations/bitbucket-integration.md#pull-request-status)).
 
-1.  Enable the Git provider integration
-1.  Enable the option **Status checks** (GitHub) or **Pull request status** (GitLab and Bitbucket)
-
-    {%
-        include-markdown "../assets/includes/default-git-provider-settings-tip.md"
-        start="<!--default-settings-start-->"
-        end="<!--default-settings-end-->"
-    %}
+{%
+    include-markdown "../assets/includes/default-git-provider-settings-tip.md"
+    start="<!--default-settings-start-->"
+    end="<!--default-settings-end-->"
+%}
 
 ![Enabling your Git provider integration](../repositories-configure/integrations/images/github-integration.png)
 
 ## 3. Blocking merging pull requests (optional) {: id="blocking-pull-requests"}
 
-Once you've tested out Codacy for a while and you're happy with the level of feedback provided, you can decide to enforce the quality gates and use Codacy to block merging pull requests on your Git provider. This is the best way to protect your code from unwelcome changes and fully integrates code quality and coverage analysis into your development pipeline.
+Once you've tested out Codacy for a while and you're happy with the level of feedback provided, you can decide to enforce the quality gates and use Codacy to block merging pull requests on your Git provider. This is the best way to protect your code from unwelcome changes and fully integrate code quality and coverage analysis into your development pipeline.
 
 !!! important
     To eliminate any false positives that could inadvertently block the work of your team, it's important that before activating this feature you:
@@ -65,6 +62,12 @@ Follow the instructions from your Git provider to block merging pull requests if
 -   **GitHub:** [set Codacy as a required status check](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule)
 -   **GitLab:** [only allow merge requests to be merged if the pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html#only-allow-merge-requests-to-be-merged-if-the-pipeline-succeeds)
 -   **Bitbucket:** [configure Bitbucket to prevent a merge with unresolved merge checks](https://support.atlassian.com/bitbucket-cloud/docs/suggest-or-require-checks-before-a-merge/)
+
+Codacy sends three different status checks to Git providers for increased granularity and customization: **quality metrics, coverage variation, and diff coverage**. These checks help you protect your repositories by indicating whether the main branch is fully, partially, or not protected:  
+
+-  **Protected**: All configured gates are required status checks in your Git provider.  
+-  **Partially Protected**: Some configured gates are required status checks in your Git provider.  
+-  **Not Protected**: None of the configured gates are required status checks in your Git provider.
 
 ## You're all set! 🎉
 

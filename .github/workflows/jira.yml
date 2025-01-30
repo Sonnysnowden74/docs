@@ -18,7 +18,7 @@ jobs:
 
       - name: Create Jira issue
         id: create_jira_issue
-        uses: atlassian/gajira-create@v3.0.1
+        uses: atlassian/gajira-create@v3
         with:
           project: DOCS
           issuetype: Bug
@@ -28,12 +28,12 @@ jobs:
             ${{ github.event.issue.body }}
             ----
             {panel}
-            [Github permalink|${{ github.event.issue.html_url }}]
+            [GitHub permalink|${{ github.event.issue.html_url }}]
             {panel}
           fields: '{"customfield_10009": "DOCS-162", "labels": ["Quality"]}'
 
       - name: Update title of GitHub issue
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         env:
           JIRA_ISSUE_NUMBER: ${{ steps.create_jira_issue.outputs.issue }}
           GITHUB_ORIGINAL_TITLE: ${{ github.event.issue.title }}
@@ -49,7 +49,7 @@ jobs:
             })
 
       - name: Add comment to GitHub issue
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |

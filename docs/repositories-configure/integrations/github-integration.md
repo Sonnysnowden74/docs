@@ -6,23 +6,9 @@ description: Enable the GitHub integration to have status checks, annotations, i
 
 The GitHub integration incorporates Codacy on your existing Git provider workflows by reporting issues and the analysis status directly on your pull requests.
 
-When the integration is enabled, you can also create pull request comments and GitHub issues directly from Codacy when [browsing the existing issues](../../repositories/issues.md) on the repository:
-
-![GitHub integration for issues](images/github-integration-issues.png)
-
-## Enabling the GitHub integration {: id="enabling"}
-
-To enable the GitHub integration, open your repository **Settings**, tab **Integrations**. When you add a new repository, Codacy enables the integration using the [default settings for your organization](../../organizations/configuring-default-git-provider-integration-settings.md).
+When you add a new repository, Codacy sets the GitHub integration using the [default settings for your organization](../../organizations/integrations/default-git-provider-integration-settings.md). You can then [customize the settings](#configuring) for the repository.
 
 ![GitHub integration](images/github-integration.png)
-
-If you remove the integration, you can enable it again as follows:
-
-1.  Click the button **Add integration** and select **GitHub** on the list.
-1.  Click the button **Enable** and follow the instructions.
-
-    !!! important
-        The user that enables the integration [must have administrator access to the repository](../../organizations/roles-and-permissions-for-organizations.md#permissions-for-github).
 
 ## Configuring the GitHub integration {: id="configuring"}
 
@@ -87,13 +73,41 @@ Adds comments on the lines of the pull request where Codacy finds new issues wit
 
 ### AI-enhanced comments
 
-{% include-markdown "../../assets/includes/preview.md" %}
-
-Adds AI-enhanced comments with insights and ready-to-commit AI-generated fixes for identified issues. To enable this option, you must enable **Suggested fixes** first.
+Adds AI-enhanced comments, providing insights and ready-to-commit AI-generated fixes for identified issues in cases where tool-suggested fixes are not supported. To enable this option, you must enable **Suggested fixes** first.
 
 {% include-markdown "../../assets/includes/ai-info.md" %}
 
 ![AI-enhanced comment on GitHub](images/github-integration-ai-comment.png)
+
+## Generating automatic pull request summaries
+
+!!! info "This is a preview feature"
+    This is an upcoming Codacy feature. If you're interested, contact <a href="mailto:support@codacy.com">support@codacy.com</a> for early access.
+
+Codacy can provide a clear, high-level summary of the code changes introduced by a pull request, based on the committed code.
+Codacy generates an overview of the changes in the pull request so that any reviewer can understand its intent and impact.
+
+![Automatic Summary on GitHub](images/github-integration-automatic-summary.png)
+
+!!! note
+    -   This feature uses only AWS services within Codacy's existing infrastructure. No information is shared with any other third party or used to train AI models.
+    -   Summaries are generated using the pull request title, branch name, commit messages, and changes diff.
+
+To enable this feature, add the following to the [Codacy configuration file](../codacy-configuration-file.md) `.codacy.yaml` in the root of your repository:
+
+```yaml
+---
+reviews:
+  high_level_summary: true
+```
+
+You can also enable this feature across your organization by creating the above file in the root of a repository named `.codacy`. This file will be used as the default configuration for all repositories in the organization and overridden by repository-specific configuration files.
+
+Once enabled, summaries will be created when pull requests are opened and updated at each commit to reflect any changes to the pull request.
+
+Pull requests opened by bots, such as Dependabot, are ignored.
+
+If you see duplicated comments posted by Codacy on the same pull request, please ensure that your repository only has one configured webhook for Codacy.
 
 ## See also
 

@@ -28,7 +28,7 @@ You can also upload all your reports dynamically using the command `find`. For e
 
 ```bash
 bash <(curl -Ls https://coverage.codacy.com/get.sh) report \
-    -l Java $(find . -name 'jacoco*.xml' -printf '-r %p ')
+    -l Java $(find . -name 'jacoco*.xml' | sed 's,^, -r ,' | xargs echo)
 ```
 
 ### Uploading reports in sequence {: id="multiple-reports-sequence"}
@@ -72,8 +72,9 @@ Codacy can't automatically detect Golang coverage report files because they don'
 If you're uploading a Golang coverage report, you must also specify the report type:
 
 ```bash
+go test -coverprofile=unit.coverage.out ./...
 bash <(curl -Ls https://coverage.codacy.com/get.sh) report \
-    --force-coverage-parser go -r <coverage report file name>
+    --force-coverage-parser go -r unit.coverage.out
 ```
 
 ## Uploading coverage for unsupported languages {: id="unsupported-languages"}

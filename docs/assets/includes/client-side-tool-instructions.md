@@ -9,10 +9,10 @@
 
 1.  Set up an API token to authenticate on Codacy:
 
-    -   **If you're setting up one repository**, [obtain a project API token](../../codacy-api/api-tokens.md#project-api-tokens) and set the following environment variable to specify your project API token:
+    -   **If you're setting up one repository**, [obtain a repository API token](../../codacy-api/api-tokens.md#repository-api-tokens) and set the following environment variable to specify your repository API token:
 
         ```bash
-        export CODACY_PROJECT_TOKEN=<your project API token>
+        export CODACY_PROJECT_TOKEN=<your repository API token>
         ```
 
     -   **If you're setting up multiple repositories**, [obtain an account API Token](../../codacy-api/api-tokens.md#account-api-tokens) and set the following environment variable to specify the account API token:
@@ -21,7 +21,7 @@
         export CODACY_API_TOKEN=<your account API token>
         ```
 
-    {% include-markdown "api-token-warning.md" %}
+    {% include-markdown "./api-token-warning.md" %}
 
 1.  **If you're using Codacy Self-hosted** set the following environment variable to specify your Codacy instance URL:
 

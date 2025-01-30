@@ -84,7 +84,7 @@ The following table contains example coverage tools that generate reports in for
 </tr>
 <tr>
     <td>PHP</td>
-    <td><a href="https://phpunit.readthedocs.io/en/10.0/code-coverage.html">PHPUnit</a></td>
+    <td><a href="https://phpunit.readthedocs.io/en/11.0/code-coverage.html">PHPUnit</a></td>
     <td><code>coverage-xml/index.xml</code> (PHPUnit XML version &lt;= 4)<br/>
         <code>clover.xml</code> (Clover)</td>
 </tr>
@@ -159,13 +159,13 @@ After having coverage reports set up for your repository, you must use the Codac
 1.  Set up an API token to allow Codacy Coverage Reporter to authenticate on Codacy:
     {: id="authenticate"}
 
-    -   **If you're setting up coverage for one repository**, [obtain a project API token](../codacy-api/api-tokens/#project-api-tokens) and set the following environment variable to specify your project API token:
+    -   **If you're setting up coverage for one repository**, [obtain a repository API token](../codacy-api/api-tokens.md#repository-api-tokens) and set the following environment variable to specify your repository API token:
 
         ```bash
-        export CODACY_PROJECT_TOKEN=<your project API token>
+        export CODACY_PROJECT_TOKEN=<your repository API token>
         ```
 
-    -   **If you're setting up and automating coverage for multiple repositories**, [obtain an account API Token](../codacy-api/api-tokens/#account-api-tokens) and set the following environment variables:
+    -   **If you're setting up and automating coverage for multiple repositories**, [obtain an account API Token](../codacy-api/api-tokens.md#account-api-tokens) and set the following environment variables:
 
         -   **CODACY_API_TOKEN:** Your account API token.
 

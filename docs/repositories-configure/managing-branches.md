@@ -1,7 +1,13 @@
 # Managing branches
 
 {% if not extra.self_hosted %}
+
+{% include-markdown "../assets/includes/admin-access-control-info.md" %}
+
 Codacy automatically analyzes the default branch of your repository (typically `master` or `main` as configured on your Git provider) and loads its data first on dashboards. Codacy also supports analyzing multiple branches.
+
+!!! note
+    Codacy doesn't support and skips the analysis of branches named [`HEAD`](<https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefHEADaHEAD>) or matching the pattern [`refs/heads/*`](<https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefrefaref>), as these are Git reserved terms.
 
 To change the default branch of your repository or start analyzing other branches:
 
@@ -13,7 +19,9 @@ To change the default branch of your repository or start analyzing other branche
 
     Enabling a new branch triggers an initial analysis of that branch and the analysis results and information for that branch will become available after the analysis is complete.
 
-1.  To change the default branch on Codacy, click the corresponding **Make default** link that appears when you hover the column **Default**. Changing the default branch on Codacy doesn't change the default branch on your Git provider.
+1.  To change the default branch on Codacy, click the corresponding **Make default** link that appears when you hover the column **Default**.
+
+    Changing the default branch on Codacy doesn't change the default branch on your Git provider. Likewise, changing the default branch on your Git provider doesn't change the default branch on Codacy.
 
     !!! note
         You can only set as default branch an already enabled branch.

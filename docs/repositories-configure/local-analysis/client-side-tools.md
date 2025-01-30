@@ -12,9 +12,15 @@ Codacy supports client-side tools in two ways:
 
     The Codacy Analysis CLI automatically fetches the code pattern settings that you define on the Codacy UI and applies them when running the tools.
 
--   **Standalone tools:** Codacy provides auxiliary converters that parse the output of third-party tools and convert to a format that you then upload to Codacy. You must download, configure, and run the third-party tools yourself.
+-   **Standalone tools:** Codacy provides auxiliary converters that parse the output of third-party tools and convert to a format that you then upload to Codacy. You must download, configure, and run the third-party tools yourself.<!-- NOTE: If updating this line or the one below, search for and update the matching UI copy on the Code patterns page in codacy-spa. -->
 
     You can't configure these tools on the Codacy UI, since you manage their configuration locally.
+
+!!! tip
+    In order to receive results from local analysis, the flag "Run analysis on your build server" **must be enabled**.
+
+![Client-side analysis flow](images/run-analysis-through-build-server.png)
+
 
 The table below describes the supported client-side tools and includes links to specific instructions on how to run each tool.
 
@@ -26,7 +32,7 @@ The table below describes the supported client-side tools and includes links to 
 
     docs/getting-started/supported-languages-and-tools.md
     docs/repositories-configure/local-analysis/client-side-tools.md (if the tool runs client-side)
-    docs/repositories/security-monitor.md (if the tool reports security issues)
+    docs/organizations/managing-security-and-risk.md  (if the tool reports security issues)
     docs/repositories-configure/configuring-code-patterns.md (supported configuration files table, or list of tools that don't support configuration files)
     docs/repositories-configure/codacy-configuration-file.md (list of tool short names to use on the Codacy configuration file)
 -->
@@ -81,15 +87,10 @@ The table below describes the supported client-side tools and includes links to 
         <td><a href="../running-spotbugs/">Running SpotBugs</a> (containerized)</td>
     </tr>
     <tr>
-        <td rowspan="2">Objective-C</td>
+        <td>Objective-C</td>
         <td><a href="https://clang.llvm.org/extra/clang-tidy/">Clang-Tidy</a></td>
         <td>Clang-tidy is a clang-based C++ "linter" tool. Its purpose is to provide an extensible framework for diagnosing and fixing typical programming errors, like style violations, interface misuse, or bugs that can be deduced via static analysis. Clang-tidy is modular and provides a convenient interface for writing new checks.</td>
         <td><a href="https://github.com/codacy/codacy-clang-tidy#usage">Running Clang-Tidy</a> (standalone)</td>
-    </tr>
-    <tr>
-        <td><a href="http://fauxpasapp.com/">Faux Pas</a></td>
-        <td>Faux Pas inspects your iOS or Mac app's Xcode project and warns about possible bugs, as well as about maintainability and style issues.</td>
-        <td><a href="https://github.com/codacy/codacy-faux-pas#usage">Running Faux Pas</a> (standalone)</td>
     </tr>
     <tr>
         <td>Unity</td>

@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.DEPLOYMENT_PERSONAL_ACCESS_TOKEN }}
           submodules: true
@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.x"
           cache: "pip"
@@ -43,7 +43,7 @@ jobs:
           mkdocs -v build
 
       - name: Upload meta descriptions artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: meta-descriptions
           path: ./site/meta-descriptions.csv
@@ -62,7 +62,7 @@ jobs:
 
       - name: Deploy docs (branch preview)
         if: github.ref != 'refs/heads/master' && !startsWith(github.ref, 'refs/heads/release/v')
-        uses: nwtgck/actions-netlify@v2.0
+        uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: ./site
           production-branch: master
@@ -93,7 +93,7 @@ jobs:
           echo -e "User-agent: *\nSitemap: https://${{ env.CUSTOM_DOMAIN }}/sitemap.xml" > "./site/robots.txt"
 
       - name: Deploy docs (Latest)
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         if: github.ref == 'refs/heads/master'
         with:
           personal_token: ${{ secrets.DEPLOYMENT_PERSONAL_ACCESS_TOKEN }}
@@ -117,6 +117,6 @@ jobs:
         if: startsWith(github.ref, 'refs/heads/release/v')
         run: |
           git fetch origin gh-pages --verbose
-          mike deploy ${GITHUB_REF##*/release/} -t "Self-hosted ${GITHUB_REF##*/release/}" --config-file "${GITHUB_WORKSPACE}/mkdocs.yml" --push --rebase
+          mike deploy ${GITHUB_REF##*/release/} -t "Self-hosted ${GITHUB_REF##*/release/}" --config-file "${GITHUB_WORKSPACE}/mkdocs.yml" --push
         env:
           MKDOCS_SELF_HOSTED: true

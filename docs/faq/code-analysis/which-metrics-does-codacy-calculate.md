@@ -41,7 +41,7 @@ Codacy displays grades on the following places:
 |[Files page](../../repositories/files.md)|Grade for each file in your repository|
 |[Repository Dashboard](../../repositories/repository-dashboard.md)<br/>[Codacy badge](../../getting-started/adding-a-codacy-badge.md)|Grade of each analyzed branch in your repository|
 |[Email notifications](../../account/emails.md#managing-your-email-notifications)|Grade of your repository|
-|[Organization Overview](../../organizations/organization-overview.md)|Average grade of the repositories in your organization and grade of each repository|
+|[Organization overview](../../organizations/organization-overview.md)|Average grade of the repositories in your organization and grade of each repository|
 |[Repositories list](../../organizations/managing-repositories.md)|Grade of each repository in your organization|
 
 ## Issues
@@ -49,17 +49,19 @@ Codacy displays grades on the following places:
 Codacy calculates the number of issues in the following static code analysis categories:
 
 <!--issue-categories-start-->
--   **Code Style:** Code formatting and syntax problems, such as variable names style and enforcing the use of brackets and quotation marks
--   **Error Prone:** Code that may hide bugs and language keywords that should be used with caution, such as the operator `==` in JavaScript or `Option.get` in Scala
--   **Code Complexity:** High complexity methods and classes that should be refactored
+-   **Code style:** Code formatting and syntax problems, such as variable names style and enforcing the use of brackets and quotation marks
+-   **Error prone:** Code that may hide bugs and language keywords that should be used with caution, such as the operator `==` in JavaScript or `Option.get` in Scala
+-   **Code complexity:** High complexity methods and classes that should be refactored
 -   **Performance:** Code that can have performance problems
 -   **Compatibility:** Mainly for frontend code, compatibility problems across different browser versions
--   **Unused Code:** Unused variables and methods, code that can't be reached
--   **Security:** All security problems
+-   **Unused code:** Unused variables and methods, code that can't be reached
+-   **Security:** Potential security vulnerabilities, including hard-coded passwords and keys (secret scanning), vulnerable dependencies (software composition analysis or SCA), and insecure code patterns (static application security testing or SAST). For more information, see the complete [list of security issue categories](../../organizations/managing-security-and-risk.md#supported-security-categories)
 -   **Documentation:** Methods and classes that don't have the correct comment annotations
+-   **Best practice:** Code that doesn't follow the recommended coding standards and best practices
+-   **Comprehensibility:** Code that can be difficult to understand and modify
 <!--issue-categories-end-->
 
-Besides this, Codacy also allows you to compare issues across repositories with different sizes by calculating the issue cost **relative to a baseline of 1 point per line of code**, where the cost of each issue depends on its severity: Critical = 10 points, Medium = 5 points, Minor = 1 point. This means that if your repository has 50% issues, the amount and severity of the issues in your repository is half of the baseline.
+Besides this, Codacy also allows you to compare issues across repositories with different sizes by showing **issues per thousand lines of code (kLoC)**.
 
 Codacy displays issues on the following places:
 
@@ -68,19 +70,19 @@ Codacy displays issues on the following places:
 |[Commit detail page](../../repositories/commits.md)<br/>[Pull request detail page](../../repositories/pull-requests.md)<br/>[Email notifications](../../account/emails.md#managing-your-email-notifications)|Number of new and fixed issues introduced by the commit or pull request|
 |[Files page](../../repositories/files.md)|Number of issues in each file|
 |[Issues page](../../repositories/issues.md)|List of all issues detected in each branch|
-|[Repository Dashboard](../../repositories/repository-dashboard.md)|Issue percentage and how the metric is evolving over time|
-|[Organization Overview](../../organizations/organization-overview.md)|Average issue percentage of the repositories in your organization and issue percentage of each repository|
-|[Repositories list page](../../organizations/managing-repositories.md)|Issue percentage in each repository in your organization|
+|[Repository Dashboard](../../repositories/repository-dashboard.md)|Issues per 1000 lines of code|
+|[Organization overview](../../organizations/organization-overview.md)|Average issues / kLoC of the repositories in your organization and issue / kLoC of each repository|
+|[Repositories list page](../../organizations/managing-repositories.md)|Issues / kLoC in each repository in your organization|
 
 ## Complexity
 
-Codacy uses [cyclomatic complexity](https://en.wikipedia.org/wiki/Cyclomatic_complexity) to identify files with complex methods in your repository. Cyclomatic complexity is the number of linearly independent paths through the source code of a method: the more control flow statements used in a method, the higher the value. Methods with a high cyclomatic complexity are more difficult to test and more likely to have defects. [Learn more about code complexity](https://blog.codacy.com/an-in-depth-explanation-of-code-complexity/) on Codacy's blog.
+Codacy uses [cyclomatic complexity](https://en.wikipedia.org/wiki/Cyclomatic_complexity) to identify files with complex methods in your repository. Cyclomatic complexity is the number of linearly independent paths through the source code of a method: the more control flow statements used in a method, the higher the value. Methods with a high cyclomatic complexity are more difficult to test and more likely to have defects. [Learn more about code complexity](https://blog.codacy.com/code-complexity/) on Codacy's blog.
 
 Codacy calculates complexity as follows:
 
 -   The complexity value for each file is the highest cyclomatic complexity of the methods in the file.
 -   A file is considered complex if its cyclomatic complexity value is higher than the threshold [**File is complex when over**](../../repositories-configure/adjusting-quality-goals.md).
--   The complexity value of a commit or pull request is the sum of the cyclomatic complexity of the files that were changed in the commit or pull request and that have complexity higher than 4.
+-   The complexity value of a commit or pull request is the sum of the cyclomatic complexity of the files that were changed in the commit or pull request and that have a high complexity increase, defined as an increase of 4 or more.
 
 Codacy displays complexity on the following places:
 
@@ -89,7 +91,7 @@ Codacy displays complexity on the following places:
 |[Commit detail page](../../repositories/commits.md)<br/>[Pull request detail page](../../repositories/pull-requests.md)<br/>[Email notifications](../../account/emails.md#managing-your-email-notifications)|Variation of the complexity value introduced by the commit or pull request|
 |[Files page](../../repositories/files.md)|Complexity value of each file|
 |[Repository Dashboard](../../repositories/repository-dashboard.md)|Percentage of complex files in your repository and how the metric is evolving over time|
-|[Organization Overview](../../organizations/organization-overview.md)|Average percentage of complex files in the repositories in your organization and percentage of complex files in each repository|
+|[Organization overview](../../organizations/organization-overview.md)|Average percentage of complex files in the repositories in your organization and percentage of complex files in each repository|
 |[Repositories list page](../../organizations/managing-repositories.md)|Percentage of complex files in each repository in your organization|
 
 ## Duplication
@@ -112,7 +114,7 @@ Codacy displays duplication on the following places:
 |[Commit detail page](../../repositories/commits.md)<br/>[Pull request detail page](../../repositories/pull-requests.md)<br/>[Email notifications](../../account/emails.md#managing-your-email-notifications)|Number of clones added or fixed by a commit or pull request|
 |[Files page](../../repositories/files.md)|Duplication value of each file|
 |[Repository Dashboard](../../repositories/repository-dashboard.md)|Percentage of duplicated files in your repository and how the metric is evolving over time|
-|[Organization Overview](../../organizations/organization-overview.md)|Average percentage of duplicated files in the repositories in your organization and percentage of complex files in each repository|
+|[Organization overview](../../organizations/organization-overview.md)|Average percentage of duplicated files in the repositories in your organization and percentage of complex files in each repository|
 |[Repositories list page](../../organizations/managing-repositories.md)|Percentage of duplicated files in each repository in your organization|
 
 ## Code coverage
@@ -147,7 +149,7 @@ Once the coverage setup is complete, Codacy displays coverage data on the follow
 |[Files page](../../repositories/files.md)|Coverage percentage of each file|
 |[Repository Dashboard](../../repositories/repository-dashboard.md)|Coverage of the most recent commit of the selected branch and its evolution over time|
 |[Codacy badge](../../getting-started/adding-a-codacy-badge.md)|Coverage of the most recent commit of the configured branch|
-|[Organization Overview](../../organizations/organization-overview.md)|Average coverage of the repositories in your organization and coverage of each repository|
+|[Organization overview](../../organizations/organization-overview.md)|Average coverage of the repositories in your organization and coverage of each repository|
 |[Repositories list page](../../organizations/managing-repositories.md)|Coverage of each repository in your organization|
 
 ## See also

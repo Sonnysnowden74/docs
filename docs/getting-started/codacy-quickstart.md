@@ -7,9 +7,9 @@ nav_step: 0
 
 Codacy is an automated code quality and coverage platform that analyzes your source code and identifies issues as you go, helping your team ship robust software by scanning over 40 programming languages, such as JavaScript, Python, Java, C#, and PHP.
 
-Check out our product demo for an overview of Codacy's main features (recorded on February 4, 2022):
+Check out our product demo for an overview of Codacy's main features (recorded on May 13, 2024):
 
-<div style="position: relative; padding-bottom: 61.224489795918366%; height: 0;"><iframe src="https://www.loom.com/embed/c1a408057e5c46eda4e3256eafae1f05" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+<div style="position: relative; padding-bottom: 61.224489795918366%; height: 0;"><iframe src="https://www.loom.com/embed/1ed27d66b659427883ddd28e57468c22" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 By integrating with your Git provider, Codacy keeps track of your team’s work, analyzes relevant commits, highlights problems, suggests improvements, and protects your codebase from unwelcome changes. From organization and repository level to individual files, pull requests, and commits, Codacy monitors the following metrics across your projects:
 
@@ -22,7 +22,7 @@ By integrating with your Git provider, Codacy keeps track of your team’s work,
 
 {% include-markdown "../assets/includes/nav-multistep-quickstart.md" %}
 
-To get started, head to [<span class="skip-vale">codacy.com</span>](https://www.codacy.com/) and click **Get started**. Then, follow these steps:
+To get started, head to [<span class="skip-vale">codacy.com</span>](https://www.codacy.com/) and click **Start free**. Then, follow these steps:
 
 1.  [Signing up](#signing-up)
 1.  [Choosing an organization](#choosing-organization)
@@ -54,7 +54,7 @@ Next, add the repositories that you wish to analyze. Codacy begins an initial an
 
 ![Adding repositories](../organizations/images/repositories-add.png)
 
-Click the link **Go to repository** to see the [code quality overview of your repository](../repositories/repository-dashboard.md) as soon as the initial analysis is complete:
+Click the repository name to navigate to the repository dashboard and see the [code quality overview of your repository](../repositories/repository-dashboard.md) as soon as the initial analysis is complete:
 
 ![Repository dashboard](../repositories/images/repository-dashboard.png)
 

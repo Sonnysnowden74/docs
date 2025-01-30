@@ -16,8 +16,35 @@ For product updates that are in progress or planned [visit the Codacy public roa
 
 ## Codacy Cloud release notes {: id="cloud"}
 
+2024
+
+-   [Cloud December 2024](cloud/cloud-2024-12.md)
+-   [Cloud November 2024](cloud/cloud-2024-11.md)
+-   [Cloud October 2024](cloud/cloud-2024-10.md)
+-   [Cloud September 2024](cloud/cloud-2024-09.md)
+-   [Adding ESLint 9 and PMD 7 as new supported tools September, 2024](cloud/cloud-2024-09-adding-eslint9-and-pmd7.md)
+-   [Cloud August 2024](cloud/cloud-2024-08.md)
+-   [Cloud July 2024](cloud/cloud-2024-07.md)
+-   [Cloud June 2024](cloud/cloud-2024-06.md)
+-   [Cloud May 2024](cloud/cloud-2024-05.md)
+-   [Cloud April 2024](cloud/cloud-2024-04.md)
+-   [Cloud March 2024](cloud/cloud-2024-03.md)
+-   [Cloud February 2024](cloud/cloud-2024-02.md)
+-   [Cloud January 2024](cloud/cloud-2024-01.md)
+-   [Discontinuation of SSH keys for GitHub repositories January 15, 2024](cloud/cloud-2024-01-15-gh-repository-ssh-keys-discontinuation.md)
+
 2023
 
+-   [Cloud December 2023](cloud/cloud-2023-12.md)
+-   [Cloud November 2023](cloud/cloud-2023-11.md)
+-   [Rollout of new Coverage engine November 23, 2023](cloud/cloud-2023-11-23-new-coverage-engine-status-checks.md)
+-   [Removal of Jira, Slack, and Webhooks repository integrations November 13, 2023](cloud/cloud-2023-11-13-jira-slack-webhooks-repo-integrations-removal.md)
+-   [Cloud October 2023](cloud/cloud-2023-10.md)
+-   [Deprecation of CSSLint, JSHint, Faux Pas, Tailor, TSLint October 25, 2023](cloud/cloud-2023-10-25-csslint-jshint-fauxpas-tailor-tslint-deprecation.md)
+-   [Deprecation of bundler-audit October 13, 2023](cloud/cloud-2023-10-13-bundler-audit-deprecation.md)
+-   [Cloud September 2023](cloud/cloud-2023-09.md)
+-   [Cloud August 2023](cloud/cloud-2023-08.md)
+-   [Cloud July 2023](cloud/cloud-2023-07.md)
 -   [Cloud June 2023](cloud/cloud-2023-06.md)
 -   [Cloud May 2023](cloud/cloud-2023-05.md)
 -   [Cloud April 2023](cloud/cloud-2023-04.md)
@@ -80,6 +107,18 @@ For product updates that are in progress or planned [visit the Codacy public roa
 -   [Cloud July 23, 2018](cloud/cloud-2018-07-23.md)
 
 ## Codacy Self-hosted release notes {: id="self-hosted"}
+
+v14
+
+-   [v14.0.0](self-hosted/self-hosted-v14.0.0.md) (June 26, 2024)
+
+v13
+
+-   [v13.0.0](self-hosted/self-hosted-v13.0.0.md) (November 23, 2023)
+
+v12
+
+-   [v12.0.0](self-hosted/self-hosted-v12.0.0.md) (July 20, 2023)
 
 v11
 
